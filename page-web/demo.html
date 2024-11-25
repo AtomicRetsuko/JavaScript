@@ -1,0 +1,13 @@
+<input id="name">
+<button onclick="display()">GO</button>
+<h1 id="demo"></h1>
+<script>
+    function display(){
+        const input = document.getElementById('name');
+        const name = input.value;
+        input.value =''; //je vide le champ input
+        //document.getElementById('demo').innerHTML = name.toUpperCase();
+        const demo = document.getElementById('demo'); // demo c le selecteur
+        demo.innerHTML = name.toUpperCase();
+    }
+</script>
