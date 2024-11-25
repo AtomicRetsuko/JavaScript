@@ -1,14 +1,14 @@
 # My Project Title
 
-A brief description of the project goes here. Explain what it does, who it's for, and why it's useful.
+This is my README exemple.
 
 ---
 
 ## Table of Contents
 
-1. [Features](#features)
-2. [Installation](#installation)
-3. [Usage](#usage)
+1. [Features] Pingu
+2. [Installation] Pingu_Packages
+3. [Usage]All_Purposes
 4. [Contributing](#contributing)
 5. [License](#license)
 
@@ -16,9 +16,9 @@ A brief description of the project goes here. Explain what it does, who it's for
 
 ## Features
 
-- **Feature 1**: Description of the first feature.
-- **Feature 2**: Explanation of the second feature.
-- **Feature 3**: Highlight another cool aspect of your project.
+- **Feature 1**: Design Your Pingu
+- **Feature 2**: Print Your Pingu
+- **Feature 3**: Paint Your Pingu
 
 ---
 
