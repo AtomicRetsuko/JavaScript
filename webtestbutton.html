@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rouge {
+            background-color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">test</div>
+    <button id="bouton">ClickMe</button>
+
+    <div id="demo2">GoOoo</div>
+    <button id="modifier">GO</button>
+
+    <div id="demo3">GooOOoooOoo</div>
+    <button id="btr">RemoveMe</button>
+
+    <script>
+        // Handler for the "ClickMe" button
+        document.getElementById('bouton').onclick = () => {
+            const p = document.createElement('p'); // Create a <p> element
+            p.innerHTML = 'Brad PITT'; // Insert text
+            p.classList.add("rouge"); // Add 'rouge' class
+            document.getElementById('demo').appendChild(p); // Append to #demo
+        };
+
+        // Handler for the "GO" button
+        document.getElementById('modifier').onclick = () => {
+            document.getElementById('demo2').classList.toggle('rouge'); // Toggle 'rouge' class
+        };
+
+        // Handler for the "RemoveMe" button
+        document.getElementById('btr').onclick = (event) => {
+            const target = event.target; // Corrected 'terget' to 'target'
+            target.remove(); // Remove the clicked button
+        };
+    </script>
+</body>
+
+</html>

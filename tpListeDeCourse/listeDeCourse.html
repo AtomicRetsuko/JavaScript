@@ -71,6 +71,7 @@
 
   <script>
     document.getElementById("btnAjouter").onclick=()=>{
+        if (fruit != '') {
         console.log("ok")
         const fruit=document.getElementById("fruit").value;
         console.log(fruit);
@@ -94,6 +95,7 @@
         myTbody.appendChild(tr);
 
     }
+}
 
   </script>
 

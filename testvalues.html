@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+<script>
+
+
+const NCQM ={           //exemple basique d'object avec des propriétés
+brand: "Nuka Cola",
+weight: "2lbs",
+value: 11
+}
+console.log(NCQM.value)
+
+NCQM.value = 22
+console.log(NCQM.value)
+
+function tosquare(nb){
+    return nb * nb
+}
+console.log(tosquare(5))
+
+list = ['Patate', 'Pomme', 'Orange']
+
+console.log(list.reverse()) //renverser la liste
+
+
+const Arthur ={
+    name: "Morgan",     //exemple Ultime d'object avec des propriétés
+    price: "$5000"
+}
+
+console.log("You're a Wanted Man Mister",Arthur.name,",",Arthur.price, "For Your Head Alone !" )
+
+
+const fruits = ['pomme','poire','cerise', 'fraise', 'kiwi'];
+for (let f of fruits){// afficher un tableau : boucle for each
+    console.log(f);
+}
+
+console.log("")
+
+// le map
+fruits.map (f => {console.log(f)});
+// le map avec indice
+
+console.log("")
+
+fruits.splice(1,2); // 1 = indice  ; 2 = nb eléments à effacer a partir de l'index, ici 2
+
+
+fruits.map ((f,i) => {console.log(fruits[i])});
+
+</script>
