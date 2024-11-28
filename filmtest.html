@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .movie-container {
+            margin-top: 20px;
+        }
+        .movie-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .movie-card img {
+            max-width: 100px;
+            margin-right: 15px;
+        }
+        .favorite-list {
+            margin-top: 20px;
+        }
+        .favorite-item {
+            background-color: #e0f7fa;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movies Database</h1>
+    <input type="text" id="movie-title" placeholder="Enter movie title" />
+    <button id="search-btn">Search</button>
+
+    <div class="movie-container" id="movie-container"></div>
+
+    <h2>Movies List</h2>
+    <div class="favorite-list" id="favorite-list"></div>
+
+    <script>
+        const apiKey = "4c670e9a";
+        const movieContainer = document.getElementById("movie-container");
+        const favoriteList = document.getElementById("favorite-list");
+        let favorites = [];
+
+        // Fetch movie data
+        async function fetchMovie(title) {
+            const response = await fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`);
+            const data = await response.json();
+            return data;
+        }
+
+        // Display movie details
+        function displayMovie(movie) {
+            if (movie.Response === "False") {
+                movieContainer.innerHTML = `<p>${movie.Error}</p>`;
+                return;
+            }
+
+            movieContainer.innerHTML = `
+                <div class="movie-card">
+                    <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/100"}" alt="${movie.Title}">
+                    <div>
+                        <h3>${movie.Title} (${movie.Year})</h3>
+                        <p><strong>Genre:</strong> ${movie.Genre}</p>
+                        <p><strong>Plot:</strong> ${movie.Plot}</p>
+                        <button onclick="addToFavorites('${movie.imdbID}', '${movie.Title}')">Add to Favorites</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add to favorites
+        function addToFavorites(imdbID, title) {
+            if (favorites.find(movie => movie.imdbID === imdbID)) {
+                alert("This movie is already in your favorites!");
+                return;
+            }
+
+            favorites.push({ imdbID, title });
+            updateFavoriteList();
+        }
+        function updateFavoriteList() {
+            favoriteList.innerHTML = favorites.map(movie => `
+                <div class="favorite-item">
+                    <p>${movie.title}</p>
+                    <button onclick="removeFromFavorites('${movie.imdbID}')">Remove</button>
+                </div>
+            `).join("");
+        }
+
+        // Remove from favorites
+        function removeFromFavorites(imdbID) {
+            favorites = favorites.filter(movie => movie.imdbID !== imdbID);
+            updateFavoriteList();
+        }
+
+        // Search movie event
+        document.getElementById("search-btn").addEventListener("click", async () => {
+            const title = document.getElementById("movie-title").value;
+            if (!title) {
+                alert("Please enter a Movie Title");
+                return;
+            }
+
+            const movie = await fetchMovie(title);
+            displayMovie(movie);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container"></div> <!-- Container where the card will be inserted -->
+</body>
+</html>
+
+
+<script>
+const data = {
+    country: "Suisse",
+    lang: ["FR", "DE", "EN", "IT"],
+    population: 8500000
+};
+
+const card = `
+<div class="card">
+    <h2>Country: ${data.country}</h2>
+    <p>Population: ${data.population}</p>
+    <p>Language(s): ${data.lang.join(", ")}</p> <!-- Format languages as a comma-separated list -->
+</div>
+`;
+
+document.querySelector('.container').innerHTML = card;
+</script>
