@@ -92,11 +92,7 @@
         function updateFavoriteList() {
             favoriteList.innerHTML = favorites.map(movie => `
                 <div class="favorite-item">
-                    <p>${movie.title}</p>
-                    <p>${movie.Genre}</p>
-                    <p>${movie.Plot}</p>
-                    <p>${movie.imdbID}</p>
-                    
+                    <p>${movie.title}</p>           
                     <button onclick="removeFromFavorites('${movie.imdbID}')">Remove</button>
                 </div>
             `).join("");
