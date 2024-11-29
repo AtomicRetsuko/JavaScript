@@ -82,7 +82,7 @@
         // Add to favorites
         function addToFavorites(imdbID, title) {
             if (favorites.find(movie => movie.imdbID === imdbID)) {
-                alert("This movie is already in your favorites!");
+                alert("This movie is already in the list !");
                 return;
             }
 
@@ -93,10 +93,16 @@
             favoriteList.innerHTML = favorites.map(movie => `
                 <div class="favorite-item">
                     <p>${movie.title}</p>
+                    <p>${movie.Genre}</p>
+                    <p>${movie.Plot}</p>
+                    <p>${movie.imdbID}</p>
+                    
                     <button onclick="removeFromFavorites('${movie.imdbID}')">Remove</button>
                 </div>
             `).join("");
         }
+
+        console.log('movie-type');
 
         // Remove from favorites
         function removeFromFavorites(imdbID) {

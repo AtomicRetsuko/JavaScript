@@ -1,0 +1,27 @@
+<button id="btnAjouter">GO</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js">
+integrity="sha512-XqYb3Gw2L5d2GKJFjyjNj0KzTt0Zw0y5BjjJ5xhjF7e7sCzvRtQ2NvPfj0r1mH8YtqZx5yvJm0LbZ2NlM3g=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+const url ='https://tira-miss-u-default-rtdb.europe-west1.firebasedatabase.app/'
+const noeud ='peoples';
+document.getElementById('btnAjouter').onclick = async () => {
+   const url2=`${url}${noeud}.json`
+   const people = {prenom:'Nicolas', nom: 'Cage'}
+   const response = await axios.post(url2, people)
+   console.log(response.data);
+   const id = response.data.name
+   console.log(id)
+}
+document.getElementById('btnSupprimer').onclick = async () => {
+    const response = await axios.get(url2)
+    const data = response.data;
+
+    for (let id in data) {
+    console.log(id);
+    console.log(data[id]);
+
+}
+
+
+</script>
