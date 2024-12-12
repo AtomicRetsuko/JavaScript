@@ -1,5 +1,5 @@
 # projet JavaScript
 
-## TP Charlie Le jeux Memory
+Tous les TPs
 
 [live preview](https://atomicretsuko.github.io/JavaScript/)
