@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Domotique</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/tv.svg" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fa-solid fa-tv me-3"></i>
+          Domotique
+        </a>
+      </div>
+    </nav>
+    <div class="container mb-3">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Les Appareils</h2>
+          <input id="appareil" type="text" class="form-control" placeholder="Appareil" />
+          <button id="btnAjouter" class="btn btn-secondary my-3">
+            <i class="fa fa-plus"></i>
+          </button>
+          <ul class="list-group"></ul>
+          <template id="myLi">
+            <li class="list-group-item">
+              <h4></h4>
+              <button class="btn btn-success">ON</button>
+              <button class="btn btn-danger ml-2">OFF</button>
+            </li>
+          </template>
+          <p> </p>
+          <button id="btnSwitchAllOn" class="btn btn-success">ALL ON</button>
+          <button id="btnSwitchAllOff" class="ml-2 btn btn-danger">ALL OFF</button>
+        </div>
+      </div>
+    </div>
+    <footer class="py-5 bg-dark">
+      <div class="container px-4 px-lg-5">
+        <p class="m-0 text-center text-white">Copyright &copy; Seven Valley 2024</p>
+      </div>
+    </footer>
+
+    <script>
+      //-----------------------------------------------
+      // Classe Appareil
+      class Appareil {
+        constructor(name) {
+          this.name = name;
+          this.status = false;
+        }
+      }
+
+      //-----------------------------------------------
+      // Variables and Initialization
+      let appareils = [];
+
+      // Update UI based on current devices
+      const afficherHTML = () => {
+        const ul = document.querySelector(".list-group");
+        ul.innerHTML = ""; // Clear current list
+
+        appareils.forEach((a, i) => {
+          const template = document.getElementById("myLi");
+          const clone = template.content.cloneNode(true);
+          const li = clone.querySelector("li");
+          li.setAttribute("data-indice", i);
+
+          a.status
+            ? li.classList.add("list-group-item-success")
+            : li.classList.add("list-group-item-danger");
+
+          const h4 = clone.querySelector("h4");
+          h4.innerText = `${a.name} -- ${a.status ? "Allumé" : "Éteint"}`;
+
+          const btnOn = clone.querySelector(".btn-success");
+          const btnOff = clone.querySelector(".btn-danger");
+
+          btnOn.onclick = () => {
+            appareils[i].status = true;
+            afficherHTML();
+          };
+
+          btnOff.onclick = () => {
+            appareils[i].status = false;
+            afficherHTML();
+          };
+
+          ul.appendChild(clone);
+        });
+      };
+
+      // Add a new device
+      document.getElementById("btnAjouter").onclick = () => {
+        const nom = document.getElementById("appareil").value.trim();
+        if (nom) {
+          appareils.push(new Appareil(nom));
+          document.getElementById("appareil").value = ""; // Clear input
+          afficherHTML();
+        } else {
+          alert("Veuillez entrer un nom d'appareil valide !");
+        }
+      };
+
+      // Turn all devices ON
+      document.getElementById("btnSwitchAllOn").onclick = () => {
+        appareils.forEach((a) => (a.status = true));
+        afficherHTML();
+      };
+
+      // Turn all devices OFF
+      document.getElementById("btnSwitchAllOff").onclick = () => {
+        appareils.forEach((a) => (a.status = false));
+        afficherHTML();
+      };
+    </script>
+  </body>
+</html>
