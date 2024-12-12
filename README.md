@@ -1,4 +1,4 @@
-# projet JavaScript
+# projets JavaScript
 
 Tous les TPs
 
